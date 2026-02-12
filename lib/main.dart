@@ -10,10 +10,51 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/home',
+        routes: {
+            '/home':(context)=>HomeScreen(),
+            '/about':(context)=>AboutScreen(),
+            '/contact':(context)=>ContactScreen(),
+            '/login':(context)=>LoginScreen()
+        }
+    );
   }
 }
+// a Reusable Drawer Widget
 
+class Sidebar extends StatelessWidget {
+  const Sidebar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+        child: ListView(
+            children: [
+                DrawerHeader(
+                    decoration: BoxDecoration(color: Colors.blue),
+                    child: Icon(Icons.home)),
+                SizedBox(height: 30,),
+                // our navigation items
+                ListTile(title: Text('Home'),onTap: (){
+                    Navigator.pushNamed(context, '/home');
+                },),
+                ListTile(title: Text('About'),onTap: (){
+                    Navigator.pushNamed(context, '/about');
+                },),
+                ListTile(title: Text('Contact'),onTap: (){
+                    Navigator.pushNamed(context, '/contact');
+                },),
+                ListTile(title: Text('Login'),onTap: (){
+                    Navigator.pushNamed(context, '/login');
+                },)
+            ],
+        ),
+    );
+
+  }
+}
 
 
 /*what we gonna do in navigation
@@ -32,6 +73,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(items:
+        const [
+            BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.info),label: 'About'),
+            BottomNavigationBarItem(icon: Icon(Icons.contact_mail),label: 'Contact'),
+            BottomNavigationBarItem(icon: Icon(Icons.login),label: 'Login'),
+        ]),
+        drawer: Sidebar(),
         appBar: AppBar( title: Text('Home Screen'), ),
          body: Center(
             child: Text(   'Welcome to Home Screen'),
