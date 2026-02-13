@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 
-void main(){
-    runApp(MainApp());
+void main() {
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -11,14 +10,14 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/home',
-        routes: {
-            '/home':(context)=>HomeScreen(),
-            '/about':(context)=>AboutScreen(),
-            '/contact':(context)=>ContactScreen(),
-            '/login':(context)=>LoginScreen()
-        }
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => HomeScreen(),
+        '/about': (context) => AboutScreen(),
+        '/contact': (context) => ContactScreen(),
+        '/login': (context) => LoginScreen(),
+      },
     );
   }
 }
@@ -30,32 +29,43 @@ class Sidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: ListView(
-            children: [
-                DrawerHeader(
-                    decoration: BoxDecoration(color: Colors.blue),
-                    child: Icon(Icons.home)),
-                SizedBox(height: 30,),
-                // our navigation items
-                ListTile(title: Text('Home'),onTap: (){
-                    Navigator.pushNamed(context, '/home');
-                },),
-                ListTile(title: Text('About'),onTap: (){
-                    Navigator.pushNamed(context, '/about');
-                },),
-                ListTile(title: Text('Contact'),onTap: (){
-                    Navigator.pushNamed(context, '/contact');
-                },),
-                ListTile(title: Text('Login'),onTap: (){
-                    Navigator.pushNamed(context, '/login');
-                },)
-            ],
-        ),
+      child: ListView(
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(color: Colors.blue),
+            child: Icon(Icons.home),
+          ),
+          SizedBox(height: 30),
+          // our navigation items
+          ListTile(
+            title: Text('Home'),
+            onTap: () {
+              Navigator.pushNamed(context, '/home');
+            },
+          ),
+          ListTile(
+            title: Text('About'),
+            onTap: () {
+              Navigator.pushNamed(context, '/about');
+            },
+          ),
+          ListTile(
+            title: Text('Contact'),
+            onTap: () {
+              Navigator.pushNamed(context, '/contact');
+            },
+          ),
+          ListTile(
+            title: Text('Login'),
+            onTap: () {
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+        ],
+      ),
     );
-
   }
 }
-
 
 /*what we gonna do in navigation
 1. we will create a home page with /home route
@@ -64,8 +74,8 @@ class Sidebar extends StatelessWidget {
 4. we will create a login page with /login route
 5. connect all the pages with each other using 
 Navigator.pushNamed(context, '/routeName') method
-*/ 
-//===============================home screen=============================== 
+*/
+//===============================home screen===============================
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -73,22 +83,46 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(items:
-        const [
-            BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.info),label: 'About'),
-            BottomNavigationBarItem(icon: Icon(Icons.contact_mail),label: 'Contact'),
-            BottomNavigationBarItem(icon: Icon(Icons.login),label: 'Login'),
-        ]),
-        drawer: Sidebar(),
-        appBar: AppBar( title: Text('Home Screen'), ),
-         body: Center(
-            child: Text(   'Welcome to Home Screen'),
-         )
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'About',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.contact_mail),
+            label: 'Contact',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.login),
+            label: 'Login',
+          ),
+        ],
+        onTap: (value) => {
+            if(value == 0){
+              Navigator.pushNamed(context, '/home')
+            } else if(value == 1){
+              Navigator.pushNamed(context, '/about')
+            } else if(value == 2){
+              Navigator.pushNamed(context, '/contact')
+            } else if(value == 3){
+              Navigator.pushNamed(context, '/login')
+            }
+        },
+      ),
+      drawer: Sidebar(),
+      appBar: AppBar(title: Text('Home Screen')),
+      body: Center(child: Text('Welcome to Home Screen')),
     );
   }
 }
-//===============================about screen=============================== 
+//===============================about screen===============================
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -96,29 +130,25 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar( title: Text('About Screen'), ),
-         body: Center(
-            child: Text(   'Welcome to About Screen'),
-         )
+      appBar: AppBar(title: Text('About Screen')),
+      body: Center(child: Text('Welcome to About Screen')),
     );
   }
 }
-//===============================contact screen=============================== 
+//===============================contact screen===============================
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-        appBar: AppBar( title: Text('contact Screen'), ),
-         body: Center(
-            child: Text(   'Welcome to contact Screen'),
-         )
+    return Scaffold(
+      appBar: AppBar(title: Text('contact Screen')),
+      body: Center(child: Text('Welcome to contact Screen')),
     );
   }
 }
-//===============================login screen=============================== 
+//===============================login screen===============================
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -126,10 +156,8 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar( title: Text('Login Screen'), ),
-         body: Center(
-            child: Text(   'Welcome to Login Screen'),
-         )
+      appBar: AppBar(title: Text('Login Screen')),
+      body: Center(child: Text('Welcome to Login Screen')),
     );
   }
 }
