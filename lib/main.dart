@@ -144,7 +144,13 @@ class ContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('contact Screen')),
-      body: Center(child: Text('Welcome to contact Screen')),
+      body: Center(
+        child: Column(
+          children: [
+            
+          ],
+        ),
+      ),
     );
   }
 }
@@ -203,7 +209,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                     onPressed: () => {},
                     child: Text('SUBMIT',
-                    ,)
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    )
                   )
                 ],
               ),
