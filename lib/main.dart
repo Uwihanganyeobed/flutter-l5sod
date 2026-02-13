@@ -157,7 +157,61 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Login Screen')),
-      body: Center(child: Text('Welcome to Login Screen')),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Card(
+            elevation: 8,
+            margin: EdgeInsets.all(20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)),
+              child: Padding(padding: EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Icon(Icons.lock, size: 60,color: Colors.blue,),
+                  SizedBox(height: 20),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      prefixIcon: Icon(Icons.email),
+                    ),
+                  ),
+                
+             
+                  SizedBox(height: 20),
+                  TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      prefixIcon: Icon(Icons.lock),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      minimumSize: Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () => {},
+                    child: Text('SUBMIT',
+                    ,)
+                  )
+                ],
+              ),
+              
+              ),
+          ),
+        ),
+      ),
     );
   }
 }
