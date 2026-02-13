@@ -147,7 +147,8 @@ class ContactScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            
+            Image(image: AssetImage(  'assets/item.png')),
+            Image(image: NetworkImage('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d'))
           ],
         ),
       ),
